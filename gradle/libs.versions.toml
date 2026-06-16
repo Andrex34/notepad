@@ -1,5 +1,5 @@
 [versions]
-agp = "8.2.2"
+agp = "8.13.2"
 kotlin = "2.1.0"
 compose-multiplatform = "1.6.11"
 firebase-bom = "33.7.0"

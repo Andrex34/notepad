@@ -12,6 +12,11 @@ import com.notepad.domain.repository.CategoryRepository
 import com.notepad.db.NotepadDatabase
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
+import dev.gitlive.firebase.Firebase
+import dev.gitlive.firebase.auth.FirebaseAuth
+import dev.gitlive.firebase.auth.auth
+import dev.gitlive.firebase.firestore.FirebaseFirestore
+import dev.gitlive.firebase.firestore.firestore
 import org.koin.dsl.module
 
 actual fun platformModule() = module {
@@ -26,6 +31,10 @@ actual fun platformModule() = module {
     single { NotepadDatabase(get()) }
     single { NoteDao(get()) }
     single { CategoryDao(get()) }
+
+    single<FirebaseAuth> { Firebase.auth }
+    single<FirebaseFirestore> { Firebase.firestore }
+
     single<AuthRepository> { FirebaseAuthRepository(get()) }
     single<NoteRepository> { FirebaseNoteRepository(get()) }
     single<CategoryRepository> { FirebaseCategoryRepository(get()) }

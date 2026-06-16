@@ -4,14 +4,14 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".NotepadApplication"
+        android:name="com.notepad.NotepadApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@android:drawable/ic_menu_edit"
         android:label="Notepad"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Material3.DayNight.NoActionBar">
+        android:theme="@style/Theme.Notepad">
         <activity
-            android:name=".MainActivity"
+            android:name="com.notepad.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>

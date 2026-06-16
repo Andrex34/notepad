@@ -56,6 +56,7 @@ kotlin {
 
         val androidMain by getting {
             dependencies {
+                implementation("androidx.activity:activity-compose:1.9.3")
                 implementation(libs.firebase.bom)
                 implementation(libs.firebase.auth.android)
                 implementation(libs.firebase.firestore.android)
@@ -76,12 +77,12 @@ kotlin {
 
 android {
     namespace = "com.notepad.app"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.notepad.app"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
     }

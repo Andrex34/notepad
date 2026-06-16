@@ -1,6 +1,7 @@
 package com.notepad.ui.navigation
 
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import com.notepad.domain.repository.AuthRepository
 import com.notepad.domain.repository.NoteRepository
 import com.notepad.domain.repository.CategoryRepository
@@ -22,11 +23,13 @@ sealed class Screen {
 fun NavigationGraph(
     authRepository: AuthRepository,
     noteRepository: NoteRepository,
-    categoryRepository: CategoryRepository
+    categoryRepository: CategoryRepository,
+    modifier: Modifier = Modifier
 ) {
     var currentScreen by remember { mutableStateOf<Screen>(Screen.Login) }
     var currentUserId by remember { mutableStateOf<String?>(null) }
 
+    androidx.compose.foundation.layout.Box(modifier = modifier) {
     when (val screen = currentScreen) {
         is Screen.Login -> {
             LoginScreen(
@@ -89,5 +92,6 @@ fun NavigationGraph(
                 onBack = { currentScreen = Screen.NotesList }
             )
         }
+    }
     }
 }

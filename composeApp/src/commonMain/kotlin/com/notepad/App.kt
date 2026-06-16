@@ -1,6 +1,9 @@
 package com.notepad
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.notepad.di.appModule
 import com.notepad.ui.navigation.NavigationGraph
 import org.koin.compose.KoinApplication
@@ -17,6 +20,7 @@ fun App() {
     NavigationGraph(
         authRepository = authRepository,
         noteRepository = noteRepository,
-        categoryRepository = categoryRepository
+        categoryRepository = categoryRepository,
+        modifier = Modifier.padding(top = 38.dp, bottom = 38.dp)
     )
 }

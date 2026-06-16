@@ -65,7 +65,7 @@ kotlin {
 
 android {
     namespace = "com.notepad.shared"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 26
