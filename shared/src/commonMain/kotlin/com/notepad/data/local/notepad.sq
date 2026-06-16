@@ -1,0 +1,60 @@
+CREATE TABLE notes (
+    id TEXT NOT NULL PRIMARY KEY,
+    title TEXT NOT NULL DEFAULT '',
+    content TEXT NOT NULL DEFAULT '',
+    category_id TEXT,
+    is_pinned INTEGER NOT NULL DEFAULT 0,
+    created_at INTEGER NOT NULL,
+    updated_at INTEGER NOT NULL,
+    user_id TEXT NOT NULL,
+    is_synced INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE categories (
+    id TEXT NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    color INTEGER NOT NULL DEFAULT 0,
+    user_id TEXT NOT NULL
+);
+
+selectAllNotes:
+SELECT * FROM notes WHERE user_id = ? ORDER BY is_pinned DESC, updated_at DESC;
+
+searchNotes:
+SELECT * FROM notes WHERE user_id = ? AND (title LIKE '%' || ? || '%' OR content LIKE '%' || ? || '%')
+ORDER BY is_pinned DESC, updated_at DESC;
+
+selectNoteById:
+SELECT * FROM notes WHERE id = ?;
+
+selectCategories:
+SELECT * FROM categories WHERE user_id = ?;
+
+selectCategoryById:
+SELECT * FROM categories WHERE id = ?;
+
+insertNote:
+INSERT OR REPLACE INTO notes(id, title, content, category_id, is_pinned, created_at, updated_at, user_id, is_synced)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+updateNote:
+UPDATE notes SET title = ?, content = ?, category_id = ?, is_pinned = ?, updated_at = ?, is_synced = ?
+WHERE id = ?;
+
+deleteNote:
+DELETE FROM notes WHERE id = ?;
+
+insertCategory:
+INSERT OR REPLACE INTO categories(id, name, color, user_id) VALUES (?, ?, ?, ?);
+
+updateCategory:
+UPDATE categories SET name = ?, color = ? WHERE id = ?;
+
+deleteCategory:
+DELETE FROM categories WHERE id = ?;
+
+getUnsyncedNotes:
+SELECT * FROM notes WHERE user_id = ? AND is_synced = 0;
+
+markNoteSynced:
+UPDATE notes SET is_synced = 1 WHERE id = ?;
